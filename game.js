@@ -1,3 +1,4 @@
+var userClickedPattern = [];
 
 var gamePattern = [];
 
@@ -37,5 +38,10 @@ switch(randomChosenColor) {
     yellowSound.play();
   break;
   default:
-    console.log(randomChoseColor);
+    console.log(randomChosenColor);
 }
+
+$(".btn").click(function() {
+  var userChosenColor = this.id;
+  userClickedPattern.push(userChosenColor);
+});
