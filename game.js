@@ -76,6 +76,21 @@ function checkAnswer(currentLevel) {
     }
   }
   else {
+    var wrong = new Audio("sounds/wrong.mp3");
+    wrong.play();
+    $("body").addClass("game-over");
 
+    setTimeout(function() {
+      $("body").removeClass("game-over");
+    }, 200);
+    $("h1").text("Game Over, Presss Any Key to Restart");
+    startOver();
   }
+}
+
+function startOver() {
+  level = 0;
+  gamePattern = [];
+  userClickedPattern = [];
+  gameStarted = false;
 }
