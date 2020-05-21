@@ -14,34 +14,37 @@ var buttonColors = [
   "yellow"
 ];
 
-function nextSequence() {
-  var randomNumber = Math.floor(Math.random() * 4) + 1;
-  console.log(randomNumber);
+function playSound(name) {
+  switch(name) {
+    case "red":
+      redSound.play();
+    break;
+    case "blue":
+      blueSound.play();
+    break;
+    case "green":
+      greenSound.play();
+    break;
+    case "yellow":
+      yellowSound.play();
+    break;
+    default:
+      console.log(randomChosenColor);
+  }
 }
 
-var randomChosenColor = buttonColors[nextSequence() - 1];
-gamePattern.push(randomChosenColor);
+function nextSequence() {
+  var randomNumber = Math.floor(Math.random() * 4) + 1;
+  var randomChosenColor = buttonColors[randomNumber - 1];
+  gamePattern.push(randomChosenColor);
 
-$("#" + randomChosenColor).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
+  playSound(randomChosenColor);
 
-switch(randomChosenColor) {
-  case "red":
-    redSound.play();
-  break;
-  case "blue":
-    blueSound.play();
-  break;
-  case "green":
-    greenSound.play();
-  break;
-  case "yellow":
-    yellowSound.play();
-  break;
-  default:
-    console.log(randomChosenColor);
+  $("#" + randomChosenColor).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
 }
 
 $(".btn").click(function() {
   var userChosenColor = this.id;
   userClickedPattern.push(userChosenColor);
+  playSound(userChosenColor);
 });
