@@ -35,10 +35,10 @@ function playSound(name) {
 }
 
 function animatePress(currentColor) {
-  $("btn").addClass("pressed");
+  $("#" + currentColor).addClass("pressed");
 
-  setTimeOut(function() {
-    $("btn").removeClass("pressed");
+  setTimeout(function() {
+    $("#" + currentColor).removeClass("pressed");
   }, 100);
 }
 
@@ -55,7 +55,9 @@ function nextSequence() {
 $(".btn").click(function() {
   var userChosenColor = this.id;
   userClickedPattern.push(userChosenColor);
+  checkAnswer(userClickedPattern.length - 1);
   playSound(userChosenColor);
+  animatePress(userChosenColor);
 });
 
 $("body").on("keydown", function() {
@@ -65,3 +67,15 @@ $("body").on("keydown", function() {
     $("h1").text("Level " + level);
   }
 });
+
+function checkAnswer(currentLevel) {
+  if (userClickedPattern[currentLevel] == gamePattern[currentLevel]) {
+    if(currentLevel == gamePattern.length - 1) {
+      setTimeout(nextSequence, 1000);
+      userClickedPattern = [];
+    }
+  }
+  else {
+
+  }
+}
