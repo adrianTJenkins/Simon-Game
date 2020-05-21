@@ -53,11 +53,13 @@ function nextSequence() {
 }
 
 $(".btn").click(function() {
-  var userChosenColor = this.id;
-  userClickedPattern.push(userChosenColor);
-  checkAnswer(userClickedPattern.length - 1);
-  playSound(userChosenColor);
-  animatePress(userChosenColor);
+  if (gameStarted == true) {
+    var userChosenColor = this.id;
+    userClickedPattern.push(userChosenColor);
+    checkAnswer(userClickedPattern.length - 1);
+    playSound(userChosenColor);
+    animatePress(userChosenColor);
+  }
 });
 
 $("body").on("keydown", function() {
@@ -82,7 +84,7 @@ function checkAnswer(currentLevel) {
     setTimeout(function() {
       $("body").removeClass("game-over");
     }, 200);
-    $("h1").text("Game Over, Presss Any Key to Restart");
+    $("h1").text("Game Over. You reached level " + level + "." + "Press Any Key to Restart");
     startOver();
   }
 }
