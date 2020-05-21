@@ -16,19 +16,19 @@ var buttonColors = [
 ];
 
 function playSound(name) {
-  switch(name) {
+  switch (name) {
     case "red":
       redSound.play();
-    break;
+      break;
     case "blue":
       blueSound.play();
-    break;
+      break;
     case "green":
       greenSound.play();
-    break;
+      break;
     case "yellow":
       yellowSound.play();
-    break;
+      break;
     default:
       console.log(randomChosenColor);
   }
@@ -61,7 +61,7 @@ $(".btn").click(function() {
 });
 
 $("body").on("keydown", function() {
-  if(gameStarted == false) {
+  if (gameStarted == false) {
     nextSequence();
     gameStarted = true;
     $("h1").text("Level " + level);
@@ -70,12 +70,11 @@ $("body").on("keydown", function() {
 
 function checkAnswer(currentLevel) {
   if (userClickedPattern[currentLevel] == gamePattern[currentLevel]) {
-    if(currentLevel == gamePattern.length - 1) {
+    if (currentLevel == gamePattern.length - 1) {
       setTimeout(nextSequence, 1000);
       userClickedPattern = [];
     }
-  }
-  else {
+  } else {
     var wrong = new Audio("sounds/wrong.mp3");
     wrong.play();
     $("body").addClass("game-over");
