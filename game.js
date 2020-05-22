@@ -62,6 +62,14 @@ $(".btn").click(function() {
   }
 });
 
+$("body").click(function() {
+  if(gameStarted == false) {
+    nextSequence();
+    gameStarted = true;
+    $("h1").text("Level " + level);
+  }
+});
+
 $("body").on("keydown", function() {
   if (gameStarted == false) {
     nextSequence();
@@ -85,7 +93,7 @@ function checkAnswer(currentLevel) {
       $("body").removeClass("game-over");
     }, 200);
     $("h1").text("Game Over. You reached level " + level + "." + "Press Any Key to Restart");
-    startOver();
+    setTimeout(startOver, 1000);
   }
 }
 
